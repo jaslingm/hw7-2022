@@ -1,52 +1,60 @@
-var video;
+var video = document.getElementById('video');
 
 window.addEventListener("load", function() {
 	console.log("Good job opening the window")
 	video.load();
 });
 
-document.querySelector("#play").addEventListener("click", function() {
-	console.log("Play Video");
+document.querySelector("#play").addEventListener("click", play);
+	function play() {
+		console.log("Playing Video");
+		video.play();
+	}
+
+document.querySelector("#pause").addEventListener("click", pause);
+	function pause() {
+		console.log("Pausing Video");
+		video.pause();
+	}
+
+document.querySelector("#mute").addEventListener("click", mute);
+	function mute() {
+		console.log("Muting Video");
+		video.muted = true;
+		console.log("Muting Video");
+	}
+	
+document.querySelector("#unmute").addEventListener("click", unmute);
+ 	function unmute() {
+		console.log("Unmuting Video");
+		video.muted= false
+	}
+
+document.querySelector("#slower").addEventListener("click", slowDown);
+
+	function slowDown() {
+		console.log("Slowing Down Video");
+		video.playbackRate -= 0.10;
+	}
+
+document.querySelector("#faster").addEventListener("click", speedUp);
+	
+	function speedUp() {
+		console.log("Speeding Up Video");
+		video.playbackRate *= slow; 
+	}
+
+document.querySelector("#skip").addEventListener("click", skipAhead);
+	
+	function speedAhead() {
+		console.log("Skiping Video");
+		video.currentTime += 10;
+	}
+
+video.addEventListener('ended', function() {
+	video.currentTime = 0;
 	video.play();
 });
 
-document.querySelector("#pause").addEventListener("click", function() {
-	console.log("Pause Video");
-	video.pause();
-});
 
-document.querySelector("#slower").addEventListener("click", function() {
-	console.log("Slow Down Video");
-	video.playbackRate -= 0.10;
-});
-
-document.querySelector("#faster").addEventListener("click", function() {
-	console.log("Speed Up Video");
-	video.playbackRate *= slow; 
-});
-
-document.querySelector("#skip").addEventListener("click", function() {
-	console.log("Skip Video");
-	var video = document.getElementById('player1');
-	video.currentTime += value;
-});
-
-document.querySelector("#mute").addEventListener("click", function() {
-	console.log("Mute Video"); 
-	if (video.muted == false) {
-	video.muted = true;
-	}
-	else {
-	var button = document.getElementById('mute');
-		button.onclick = function() {
-		video.muted = true;
-		}
-	}
-});
-
-function slide() {
-let volume = document.querySelector("slider").volume;
-console.log(volume);
-video.volume = volume;
-};
 
