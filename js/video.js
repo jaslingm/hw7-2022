@@ -1,18 +1,19 @@
-var video = document.querySelector('.video');
+var video;
 
 //Initialize the video element and turn off autoplay and turn off looping.//
 window.addEventListener("load", function() {
+	video = document.querySelector('.video');
 	console.log("Good job opening the window");
-	video.load();
-	console.log("Turn off autoplay");
+	console.log("Autoplay is set to false");
 	video.autoplay = false;
-	console.log("Turn off loop");
+	console.log("Loop is set to false");
 	video.loop = false;
 });
 
 //Play the video and update the volume information.//
 document.querySelector("#play").addEventListener("click", function() {
 	console.log("Play Video");
+	document.querySelector("#volume").innerHTML = video.volume * 100 + "%";
 	video.play();
 });
 
@@ -40,7 +41,7 @@ document.querySelector("#faster").addEventListener("click", function() {
 document.querySelector("#skip").addEventListener("click", function() {	
 	console.log("Skip Ahead");
 	video_time = video.currentTime += 10;
-	console.log("Video time is " + video_time);
+	console.log("Video current time is " + video_time);
 });
 
 
@@ -57,11 +58,13 @@ document.querySelector("#mute").addEventListener("click", function() {
 	}
 });
 
-
 //Change the volume based on the slider and update the volume information.//
 document.querySelector("#slider").addEventListener("change", function() {
-		
-	console.log(document.querySelector("#Volume"));
+	let element = document.querySelector("#volume");
+	element.innerHTML = this.value + "%";
+	video.volume = this.value / 100;
+	console.log("Current value is " + video.volume);
+	console.log(document.querySelector("#volume"));
 });
 
 //Utilize the existing oldSchool class on the video element.//
