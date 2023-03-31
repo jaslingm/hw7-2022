@@ -1,60 +1,77 @@
-var video = document.getElementById('video');
+var video = document.querySelector('.video');
 
+//Initialize the video element and turn off autoplay and turn off looping.//
 window.addEventListener("load", function() {
-	console.log("Good job opening the window")
+	console.log("Good job opening the window");
 	video.load();
+	console.log("Turn off autoplay");
+	video.autoplay = false;
+	console.log("Turn off loop");
+	video.loop = false;
 });
 
-document.querySelector("#play").addEventListener("click", play);
-	function play() {
-		console.log("Playing Video");
-		video.play();
-	}
-
-document.querySelector("#pause").addEventListener("click", pause);
-	function pause() {
-		console.log("Pausing Video");
-		video.pause();
-	}
-
-document.querySelector("#mute").addEventListener("click", mute);
-	function mute() {
-		console.log("Muting Video");
-		video.muted = true;
-		console.log("Muting Video");
-	}
-	
-document.querySelector("#unmute").addEventListener("click", unmute);
- 	function unmute() {
-		console.log("Unmuting Video");
-		video.muted= false
-	}
-
-document.querySelector("#slower").addEventListener("click", slowDown);
-
-	function slowDown() {
-		console.log("Slowing Down Video");
-		video.playbackRate -= 0.10;
-	}
-
-document.querySelector("#faster").addEventListener("click", speedUp);
-	
-	function speedUp() {
-		console.log("Speeding Up Video");
-		video.playbackRate *= slow; 
-	}
-
-document.querySelector("#skip").addEventListener("click", skipAhead);
-	
-	function speedAhead() {
-		console.log("Skiping Video");
-		video.currentTime += 10;
-	}
-
-video.addEventListener('ended', function() {
-	video.currentTime = 0;
+//Play the video and update the volume information.//
+document.querySelector("#play").addEventListener("click", function() {
+	console.log("Play Video");
 	video.play();
 });
 
+//Pause Video//
+document.querySelector("#pause").addEventListener("click", function() {	
+	console.log('Pause Video');
+	video.pause();
+});
+
+//Slow the current video speed by 10% each time the button is clicked and log the new speed to the console.//
+document.querySelector("#slower").addEventListener("click", function() {
+	console.log("Slow Down Video");
+	video_rate = video.playbackRate *= 0.9;
+	console.log("Speed is " + video_rate);
+});
+
+//Speed Up Video//
+document.querySelector("#faster").addEventListener("click", function() {
+	console.log("Speed Up Video");
+	video_rate = video.playbackRate /= 0.9; 
+	console.log("Speed is " + video_rate);
+});
+
+//Skip Ahead Video//
+document.querySelector("#skip").addEventListener("click", function() {	
+	console.log("Skip Ahead");
+	video_time = video.currentTime += 10;
+	console.log("Video time is " + video_time);
+});
+
+
+//Unmute and Mute Video//
+document.querySelector("#mute").addEventListener("click", function() {
+	if (video.muted == true) {
+		console.log("Unmute Video");
+		video.muted = false;
+		this.innerHTML = 'Mute';
+	} else {
+		console.log("Mute Video");
+		video.muted = true;
+		this.innerHTML = 'Unmute';
+	}
+});
+
+
+//Change the volume based on the slider and update the volume information.//
+document.querySelector("#slider").addEventListener("change", function() {
+		
+	console.log(document.querySelector("#Volume"));
+});
+
+//Utilize the existing oldSchool class on the video element.//
+document.querySelector("#vintage").addEventListener("click", function() {	
+	video.classList.add("oldSchool");
+});
+
+//Remove the oldSchool class from the video.//
+document.querySelector("#orig").addEventListener("click", function() {	
+	video.classList.remove("oldSchool");
+});
 
 
